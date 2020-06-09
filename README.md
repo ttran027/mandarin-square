@@ -21,20 +21,19 @@ ReactJS
 - Play with computer mode
 
 ## Installation
-Provide step by step series of examples and explanations about how to get a development env running.
-
-## How to use?
-Play the game direct at:
-```sh
-https://ttran027.github.io/mandarin-square/
-```
-Or play it on your local computer:  
 1/ Clone this repository and install npm on your computer  
 2/ In the project directory use this command:
 ```sh
 npm start
 ```
 3/ The game will start in a local web server
+
+
+## How to use?
+Install the game on your computer or play it directly at:
+```sh
+https://ttran027.github.io/mandarin-square/
+```
 
 ## Contribute
 Contact me if you want to contribute
