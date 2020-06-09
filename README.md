@@ -24,6 +24,11 @@ ReactJS
 Provide step by step series of examples and explanations about how to get a development env running.
 
 ## How to use?
+Play the game direct at:
+```sh
+https://ttran027.github.io/mandarin-square/
+```
+Or play it on your local computer:  
 1/ Clone this repository and install npm on your computer  
 2/ In the project directory use this command:
 ```sh
@@ -35,7 +40,7 @@ npm start
 Contact me if you want to contribute
 
 ## Credits
-Game's rules and board setup:
+Game's rules and board setup:  
 https://vi.wikipedia.org/wiki/%C3%94_%C4%83n_quan
 
 ## License
