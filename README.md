@@ -37,7 +37,7 @@ https://ttran027.github.io/mandarin-square/
 
 ## Contribute
 Contact me if you want to contribute  
-Email: ttran027@odu.edu
+ttran027@odu.edu
 
 ## Credits
 Game's rules and board setup:  
