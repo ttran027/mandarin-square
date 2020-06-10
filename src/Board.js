@@ -1,6 +1,7 @@
 import React from "react";
 import Square from "./Square";
 import Control from "./Control";
+import Container from "react-bootstrap/Container";
 
 class Board extends React.Component {
   constructor(props) {
@@ -53,13 +54,13 @@ class Board extends React.Component {
       } else if (this.state.countHold === 0 && !this.isStopped()) {
         console.log("Pickall");
         this.pickAll(time);
-      } else if (this.state.countHold === 0 && this.isStopped()){
-            while (this.isTakable()) {
-              console.log('Test: ' + this.state.cursor)
-              this.takeAll();
-              this.moveCursor();
-            }
-            this.togglePlayer();  
+      } else if (this.state.countHold === 0 && this.isStopped()) {
+        while (this.isTakable()) {
+          console.log("Test: " + this.state.cursor);
+          this.takeAll();
+          this.moveCursor();
+        }
+        this.togglePlayer();
       }
     }, time);
   }
@@ -72,11 +73,11 @@ class Board extends React.Component {
     if (this.state.nextIsA) {
       this.setState({
         squares: c,
-        countB: this.state.countB+cnt,
+        countB: this.state.countB + cnt,
       });
     } else {
       this.setState({
-        countA: this.state.countA+cnt,
+        countA: this.state.countA + cnt,
         squares: c,
       });
     }
@@ -115,12 +116,16 @@ class Board extends React.Component {
     const c = this.state.squares.slice();
     const i = this.state.cursor;
     if (
-      (this.state.isClockwise && c[i] == 0  && ((i != 11 && c[i + 1] > 0) || (i == 11 && c[1] > 0))) ||
-      (!this.state.isClockwise && c[i] == 0 && ((i != 0 && c[i - 1] > 0) || (i == 0 && c[10] > 0)))
-    ){
+      (this.state.isClockwise &&
+        c[i] == 0 &&
+        ((i != 11 && c[i + 1] > 0) || (i == 11 && c[1] > 0))) ||
+      (!this.state.isClockwise &&
+        c[i] == 0 &&
+        ((i != 0 && c[i - 1] > 0) || (i == 0 && c[10] > 0)))
+    ) {
       this.moveCursor();
       return true;
-    }   
+    }
     return false;
   }
 
@@ -140,9 +145,9 @@ class Board extends React.Component {
     }
   }
 
-  togglePlayer(){
+  togglePlayer() {
     this.setState({
-      nextIsA : !this.state.nextIsA
+      nextIsA: !this.state.nextIsA,
     });
   }
 
@@ -152,8 +157,8 @@ class Board extends React.Component {
     });
   }
 
-  renderSquare(i, c) {
-    return <Square index={i} s={c} onClick={() => this.handleClick(i)} />;
+  renderSquare(i, c, color) {
+    return <Square index={i} s={c} color={color} onClick={() => this.handleClick(i)} />;
   }
   renderControl(d) {
     return <Control isClockwise={d} onClick={() => this.toggleDirection()} />;
@@ -161,30 +166,36 @@ class Board extends React.Component {
 
   render() {
     const status = "Next player: X";
-
+    const player = 'bg-success';
+    const none = '';
     return (
       <div>
+        <Container className='d-flex justify-content-center'>
         <table>
           <tr>
-            <td rowSpan="2">{this.renderSquare(0, this.state.squares)}</td>
-            <td>{this.renderSquare(1, this.state.squares)}</td>
-            <td>{this.renderSquare(2, this.state.squares)}</td>
-            <td>{this.renderSquare(3, this.state.squares)}</td>
-            <td>{this.renderSquare(4, this.state.squares)}</td>
-            <td>{this.renderSquare(5, this.state.squares)}</td>
-            <td rowSpan="2">{this.renderSquare(6, this.state.squares)}</td>
+            <td className='bg-secondary' rowSpan="2">{this.renderSquare(0, this.state.squares,none)}</td>
+            <td className='bg-warning'>{this.renderSquare(1, this.state.squares,none)}</td>
+            <td className='bg-warning'>{this.renderSquare(2, this.state.squares,none)}</td>
+            <td className='bg-warning'>{this.renderSquare(3, this.state.squares,none)}</td>
+            <td className='bg-warning'>{this.renderSquare(4, this.state.squares,none)}</td>
+            <td className='bg-warning'>{this.renderSquare(5, this.state.squares,none)}</td>
+            <td className='bg-secondary' rowSpan="2">{this.renderSquare(6, this.state.squares,none)}</td>
           </tr>
-          <tr>
-            <td>{this.renderSquare(11, this.state.squares)}</td>
-            <td>{this.renderSquare(10, this.state.squares)}</td>
-            <td>{this.renderSquare(9, this.state.squares)}</td>
-            <td>{this.renderSquare(8, this.state.squares)}</td>
-            <td>{this.renderSquare(7, this.state.squares)}</td>
+          <tr className='bg-success'>
+            <td>{this.renderSquare(11, this.state.squares,player)}</td>
+            <td>{this.renderSquare(10, this.state.squares,player)}</td>
+            <td>{this.renderSquare(9, this.state.squares,player)}</td>
+            <td>{this.renderSquare(8, this.state.squares,player)}</td>
+            <td>{this.renderSquare(7, this.state.squares,player)}</td>
           </tr>
         </table>
-        {this.renderControl(this.state.isClockwise)}
-        <h3>A: {this.state.countA}</h3>
-        <h3>B: {this.state.countB}</h3>
+        </Container>
+
+        <Container className='d-flex justify-content-center m-3'>{this.renderControl(this.state.isClockwise)}</Container>
+        <Container className='d-flex justify-content-center m-3 bg-light'>
+          <h3 className='text-warning m-3'>Computer: {this.state.countA}</h3>
+          <h3 className='text-success m-3'>You: {this.state.countB}</h3>
+        </Container>
       </div>
     );
   }
