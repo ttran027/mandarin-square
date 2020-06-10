@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/mandarin-square/precache-manifest.ede39a8fade93c1b39d8e31cf7308b6c.js"
+  "/mandarin-square/precache-manifest.9309832caadf5d799ee9a25a3d49b31a.js"
 );
 
 self.addEventListener('message', (event) => {
